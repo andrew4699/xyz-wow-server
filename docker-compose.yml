@@ -2,14 +2,13 @@ version: "3.5"
 
 services:
   bnetserver:
-    image: xyz/bnetserver
     container_name: xyz-bnetserver
     build:
       context: .
     depends_on:
       - db
     volumes:
-      - ./etc:xyz-build/etc
+      - ./etc:/xyz/etc
     network_mode: "host"
     ports:
       - "1119:1119"
@@ -19,25 +18,24 @@ services:
     command: bash -c 'sleep 10 && ./bnetserver'
 
   worldserver:
-    image: xyz/worldserver
     container_name: xyz-worldserver
     build:
       context: .
     depends_on:
       - db
     volumes:
-      - ./Buildings:/xyz-build/Buildings
-      - ./cameras:/xyz-build/cameras
-      - ./dbc:/xyz-build/dbc
-      - ./de:/xyz-build/de
-      - ./fr:/xyz-build/fr
-      - ./gt:/xyz-build/gt
-      - ./hu:/xyz-build/hu
-      - ./maps:/xyz-build/maps
-      - ./mmaps:/xyz-build/mmaps
-      - ./vmaps:/xyz-build/vmaps
+      - ./Buildings:/xyz/Buildings
+      - ./cameras:/xyz/cameras
+      - ./dbc:/xyz/dbc
+      - ./de:/xyz/de
+      - ./fr:/xyz/fr
+      - ./gt:/xyz/gt
+      - ./hu:/xyz/hu
+      - ./maps:/xyz/maps
+      - ./mmaps:/xyz/mmaps
+      - ./vmaps:/xyz/vmaps
       - ./sql:/xyz/sql
-      - ./etc:/xyz-build/etc
+      - ./etc:/xyz/etc
     network_mode: "host"
     ports:
       - "1119:1119"
